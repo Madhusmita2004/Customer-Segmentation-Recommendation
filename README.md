@@ -144,6 +144,18 @@ and recommendations use only data up to that date. The generated order and
 engagement data continue until 2026-11-29, so the 30-day outcome window after
 the recommendation date contains data. Orders, events and support cases are
 always dated on or after the customer's signup date.
+
+Dashboard
+
+The repository now includes the interactive Databricks AI/BI dashboard
+source file "Customer Segmentation & Recommendation Dashboard.lvdash.json".
+It opens and imports in a Databricks workspace, is built on the Gold
+analytics tables, and shows KPI counters (total revenue, total customers,
+recommendation conversion rate, average RFM score), customers by segment,
+conversion rate by recommended action, revenue by acquisition channel,
+engagement events by type, average customer revenue by account status, and
+a revenue/orders/customers breakdown by channel and city.
+
 Business Value
 This project demonstrates how customer data can be transformed into
 useful business insights:
@@ -153,7 +165,7 @@ useful business insights:
 - Review recommendation and engagement summaries.
 - Use data-quality checks to improve confidence in analytics outputs.
 Future Improvements
-- Build an interactive Databricks AI/BI dashboard.
+- Publish the AI/BI dashboard and schedule regular refreshes.
 - Add more advanced customer segmentation techniques.
 - Improve recommendation logic using customer behaviour and feedback.
 - Track recommendation outcomes over a clearly defined period.
@@ -161,9 +173,9 @@ Future Improvements
 - Add project screenshots and sample output to this README.
 Project Status
 The PySpark processing, segmentation, recommendation workflow,
-validation notebooks, and Gold analytics tables have been developed.
-Interactive dashboard creation and further enhancements can be added
-next.
+validation notebooks, Gold analytics tables, and the interactive AI/BI
+dashboard have been developed. Dashboard publishing and further
+enhancements can be added next.
 Author
 Madhusmita Panda
 
