@@ -25,7 +25,10 @@ Technology Stack
 - Querying: SQL
 - Version control: Git and GitHub
 Architecture
-The project follows a Bronze--Silver--Gold style analytics workflow:
+The project follows a source-to-Gold analytics workflow. The generated source
+tables, the processed tables (RFM, segments, recommendations, outcomes) and the
+Gold tables are all Delta tables in one schema; there are no separate
+Bronze/Silver schemas:
 Source / Sample Data
         |
         v
@@ -118,6 +121,29 @@ How to Run the Project
 Important: Run the notebooks in the order defined by their numbering
 and dependencies. Table names and schema locations may need adjustment
 if you use a different Databricks catalog or schema.
+
+Notebook Run Order
+
+| Notebook | Purpose |
+|---|---|
+| 01-06 | Generate customers, products, orders, order lines, engagement events, support cases and consent |
+| 07 | RFM metrics (delivered orders up to the analysis date) |
+| 08 | Segment rules, RFM scores and customer segments |
+| 09 | Action catalog |
+| 10 | One recommendation per customer |
+| 11 | 30-day outcome tracking |
+| 12 | Data-quality validation |
+| 13 | Edge-case tests on the real pipeline tables (each with an injected control row) |
+| 14 | Gold analytics tables |
+| 15 | Dashboard views and KPIs |
+
+Data Timeline
+
+The analysis (snapshot) date is 2026-10-30. RFM, segments, support-case checks
+and recommendations use only data up to that date. The generated order and
+engagement data continue until 2026-11-29, so the 30-day outcome window after
+the recommendation date contains data. Orders, events and support cases are
+always dated on or after the customer's signup date.
 Business Value
 This project demonstrates how customer data can be transformed into
 useful business insights:
