@@ -1,0 +1,854 @@
+{
+  "datasets": [
+    {
+      "name": "engagement_summary",
+      "displayName": "Engagement Summary",
+      "config": {
+        "source": "workspace.default.gold_engagement_summary",
+        "measures": [
+          {
+            "name": "total_events",
+            "expr": "SUM(total_events)"
+          },
+          {
+            "name": "unique_customers",
+            "expr": "SUM(unique_customers)"
+          }
+        ],
+        "version": "1.1",
+        "comment": "Event counts and unique customers per engagement event type",
+        "dimensions": [
+          {
+            "name": "event_type",
+            "expr": "event_type"
+          }
+        ]
+      }
+    },
+    {
+      "name": "recommendation_performance",
+      "displayName": "Recommendation Performance",
+      "config": {
+        "source": "workspace.default.gold_recommendation_performance",
+        "measures": [
+          {
+            "name": "total_recommendations",
+            "expr": "SUM(total_recommendations)"
+          },
+          {
+            "name": "converted_recommendations",
+            "expr": "SUM(converted_recommendations)"
+          },
+          {
+            "name": "total_purchases",
+            "expr": "SUM(total_purchases)"
+          },
+          {
+            "name": "conversion_rate",
+            "expr": "SUM(converted_recommendations) * 1.0 / SUM(total_recommendations)",
+            "format": {
+              "type": "percentage",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          }
+        ],
+        "version": "1.1",
+        "comment": "Recommendation outcomes and conversion rate per recommended action",
+        "dimensions": [
+          {
+            "name": "recommended_action",
+            "expr": "recommended_action"
+          }
+        ]
+      }
+    },
+    {
+      "name": "customer_spending",
+      "displayName": "Customer Spending",
+      "config": {
+        "source": "workspace.default.gold_customer_spending",
+        "measures": [
+          {
+            "name": "total_revenue",
+            "expr": "SUM(total_revenue)",
+            "format": {
+              "type": "currency",
+              "currencyCode": "USD",
+              "abbreviation": "compact"
+            }
+          },
+          {
+            "name": "avg_customer_revenue",
+            "expr": "AVG(total_revenue)",
+            "format": {
+              "type": "currency",
+              "currencyCode": "USD"
+            }
+          },
+          {
+            "name": "total_orders",
+            "expr": "SUM(total_orders)"
+          },
+          {
+            "name": "customer_count",
+            "expr": "COUNT(1)"
+          }
+        ],
+        "version": "1.1",
+        "comment": "Per-customer revenue, orders, and attributes from the RFM analysis",
+        "dimensions": [
+          {
+            "name": "acquisition_channel",
+            "expr": "acquisition_channel"
+          },
+          {
+            "name": "gender",
+            "expr": "gender"
+          },
+          {
+            "name": "city",
+            "expr": "city"
+          },
+          {
+            "name": "account_status",
+            "expr": "account_status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "segment_summary",
+      "displayName": "Segment Summary",
+      "config": {
+        "source": "workspace.default.gold_segment_summary",
+        "measures": [
+          {
+            "name": "total_customers",
+            "expr": "SUM(total_customers)"
+          },
+          {
+            "name": "avg_rfm_score",
+            "expr": "AVG(average_rfm_score)",
+            "format": {
+              "type": "number",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          }
+        ],
+        "version": "1.1",
+        "comment": "Customer counts and average RFM score per customer segment",
+        "dimensions": [
+          {
+            "name": "segment_name",
+            "expr": "segment_name"
+          }
+        ]
+      }
+    },
+    {
+      "name": "recommendation_performance_v2",
+      "displayName": "Recommendation Performance",
+      "config": {
+        "source": "workspace.default.gold_recommendation_performance",
+        "measures": [
+          {
+            "name": "total_recommendations",
+            "expr": "SUM(total_recommendations)"
+          },
+          {
+            "name": "converted_recommendations",
+            "expr": "SUM(converted_recommendations)"
+          },
+          {
+            "name": "total_purchases",
+            "expr": "SUM(total_purchases)"
+          },
+          {
+            "name": "conversion_rate",
+            "expr": "SUM(converted_recommendations) * 1.0 / SUM(total_recommendations)",
+            "format": {
+              "type": "percentage",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          }
+        ],
+        "version": "1.1",
+        "comment": "Recommendation outcomes and conversion rate per recommended action",
+        "dimensions": [
+          {
+            "name": "recommended_action",
+            "expr": "recommended_action"
+          }
+        ]
+      }
+    },
+    {
+      "name": "segment_summary_v2",
+      "displayName": "Segment Summary",
+      "config": {
+        "source": "workspace.default.gold_segment_summary",
+        "measures": [
+          {
+            "name": "total_customers",
+            "expr": "SUM(total_customers)"
+          },
+          {
+            "name": "avg_rfm_score",
+            "expr": "AVG(average_rfm_score)",
+            "format": {
+              "type": "number",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          }
+        ],
+        "version": "1.1",
+        "comment": "Customer counts and average RFM score per customer segment",
+        "dimensions": [
+          {
+            "name": "segment_name",
+            "expr": "segment_name"
+          }
+        ]
+      }
+    },
+    {
+      "name": "customer_spending_v2",
+      "displayName": "Customer Spending",
+      "config": {
+        "source": "workspace.default.gold_customer_spending",
+        "measures": [
+          {
+            "name": "total_revenue",
+            "expr": "SUM(total_revenue)",
+            "format": {
+              "type": "currency",
+              "currencyCode": "USD",
+              "abbreviation": "compact"
+            }
+          },
+          {
+            "name": "avg_customer_revenue",
+            "expr": "AVG(total_revenue)",
+            "format": {
+              "type": "currency",
+              "currencyCode": "USD"
+            }
+          },
+          {
+            "name": "total_orders",
+            "expr": "SUM(total_orders)"
+          },
+          {
+            "name": "customer_count",
+            "expr": "COUNT(1)"
+          }
+        ],
+        "version": "1.1",
+        "comment": "Per-customer revenue, orders, and attributes from the RFM analysis",
+        "dimensions": [
+          {
+            "name": "acquisition_channel",
+            "expr": "acquisition_channel"
+          },
+          {
+            "name": "gender",
+            "expr": "gender"
+          },
+          {
+            "name": "city",
+            "expr": "city"
+          },
+          {
+            "name": "account_status",
+            "expr": "account_status"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "f87b03a0",
+      "displayName": "Page 1",
+      "layout": [
+        {
+          "widget": {
+            "name": "kpi_total_revenue",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "customer_spending",
+                  "fields": [
+                    {
+                      "name": "measure(total_revenue)",
+                      "expression": "MEASURE(`total_revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "frame": {
+                "showTitle": true,
+                "title": "Total Revenue"
+              },
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(total_revenue)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_customer_count",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "customer_spending",
+                  "fields": [
+                    {
+                      "name": "measure(customer_count)",
+                      "expression": "MEASURE(`customer_count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "frame": {
+                "showTitle": true,
+                "title": "Total Customers"
+              },
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(customer_count)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_conversion_rate",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "recommendation_performance",
+                  "fields": [
+                    {
+                      "name": "measure(conversion_rate)",
+                      "expression": "MEASURE(`conversion_rate`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "frame": {
+                "showTitle": true,
+                "title": "Recommendation Conversion Rate"
+              },
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(conversion_rate)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_avg_rfm",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "segment_summary",
+                  "fields": [
+                    {
+                      "name": "measure(avg_rfm_score)",
+                      "expression": "MEASURE(`avg_rfm_score`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "frame": {
+                "showTitle": true,
+                "title": "Avg RFM Score"
+              },
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_rfm_score)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "customers_by_segment",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "segment_summary",
+                  "fields": [
+                    {
+                      "name": "segment_name",
+                      "expression": "`segment_name`"
+                    },
+                    {
+                      "name": "measure(total_customers)",
+                      "expression": "MEASURE(`total_customers`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "frame": {
+                "showTitle": true,
+                "title": "Customers by Segment"
+              },
+              "encodings": {
+                "x": {
+                  "fieldName": "segment_name",
+                  "displayName": "segment_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_customers)",
+                  "displayName": "total_customers",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "segment_name",
+                  "displayName": "segment_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "conversion_by_action",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "recommendation_performance",
+                  "fields": [
+                    {
+                      "name": "recommended_action",
+                      "expression": "`recommended_action`"
+                    },
+                    {
+                      "name": "measure(conversion_rate)",
+                      "expression": "MEASURE(`conversion_rate`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "frame": {
+                "showTitle": true,
+                "title": "Conversion Rate by Recommended Action"
+              },
+              "encodings": {
+                "x": {
+                  "fieldName": "recommended_action",
+                  "displayName": "recommended_action",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(conversion_rate)",
+                  "displayName": "conversion_rate",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "recommended_action",
+                  "displayName": "recommended_action",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "revenue_by_channel",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "customer_spending",
+                  "fields": [
+                    {
+                      "name": "measure(total_revenue)",
+                      "expression": "MEASURE(`total_revenue`)"
+                    },
+                    {
+                      "name": "acquisition_channel",
+                      "expression": "`acquisition_channel`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "frame": {
+                "showTitle": true,
+                "title": "Revenue by Acquisition Channel"
+              },
+              "encodings": {
+                "angle": {
+                  "fieldName": "measure(total_revenue)",
+                  "displayName": "total_revenue",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "acquisition_channel",
+                  "displayName": "acquisition_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "events_by_type",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "engagement_summary",
+                  "fields": [
+                    {
+                      "name": "event_type",
+                      "expression": "`event_type`"
+                    },
+                    {
+                      "name": "measure(total_events)",
+                      "expression": "MEASURE(`total_events`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "frame": {
+                "showTitle": true,
+                "title": "Engagement Events by Type"
+              },
+              "encodings": {
+                "x": {
+                  "fieldName": "event_type",
+                  "displayName": "event_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_events)",
+                  "displayName": "total_events",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "event_type",
+                  "displayName": "event_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 6,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_revenue_by_status",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "customer_spending",
+                  "fields": [
+                    {
+                      "name": "account_status",
+                      "expression": "`account_status`"
+                    },
+                    {
+                      "name": "measure(avg_customer_revenue)",
+                      "expression": "MEASURE(`avg_customer_revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "frame": {
+                "showTitle": true,
+                "title": "Avg Customer Revenue by Account Status"
+              },
+              "encodings": {
+                "x": {
+                  "fieldName": "account_status",
+                  "displayName": "account_status",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_customer_revenue)",
+                  "displayName": "avg_customer_revenue",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "account_status",
+                  "displayName": "account_status",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 6,
+            "width": 4,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "spending_table",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "customer_spending",
+                  "fields": [
+                    {
+                      "name": "acquisition_channel",
+                      "expression": "`acquisition_channel`"
+                    },
+                    {
+                      "name": "city",
+                      "expression": "`city`"
+                    },
+                    {
+                      "name": "measure(total_revenue)",
+                      "expression": "MEASURE(`total_revenue`)"
+                    },
+                    {
+                      "name": "measure(total_orders)",
+                      "expression": "MEASURE(`total_orders`)"
+                    },
+                    {
+                      "name": "measure(customer_count)",
+                      "expression": "MEASURE(`customer_count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "frame": {
+                "showTitle": true,
+                "title": "Revenue & Orders by Channel and City"
+              },
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "acquisition_channel"
+                  },
+                  {
+                    "fieldName": "city"
+                  },
+                  {
+                    "fieldName": "measure(total_revenue)"
+                  },
+                  {
+                    "fieldName": "measure(total_orders)"
+                  },
+                  {
+                    "fieldName": "measure(customer_count)"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 12,
+            "height": 5
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
